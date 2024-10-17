@@ -3,11 +3,11 @@ let GRIDWIDTH = 500;
 let GRIDHEIGHT = 500;
 const BORDERWIDTH = 0.4;
 
-
+let mainDiv = document.querySelector(".gridDiv");
 let addEventToButton = document.querySelector(".buttonDiv");
 addEventToButton.addEventListener("click",chnageGridLayout);
 
-function chnageGridLayout(e){
+function chnageGridLayout(){
     let gridSizeNumber = parseInt(prompt("Please enter the new grid size (<101)"));
     while(isNaN(gridSizeNumber) || gridSizeNumber>100 || gridSizeNumber<=0) 
         gridSizeNumber = parseInt(prompt("Please enter a number between 0 & 101"));
@@ -18,7 +18,7 @@ function chnageGridLayout(e){
 
 
 function changebackground(e){
-    if(e.target.style.backgroundColor == "")
+    if(e.target.style.backgroundColor === "")
     {
     let redOfRGB = parseInt(Math.random()*255); 
     let greenOfRGB = parseInt(Math.random()*255); 
@@ -26,20 +26,19 @@ function changebackground(e){
     e.target.style.backgroundColor = `rgb(${redOfRGB},${greenOfRGB},${blueOfRGB})`;
     e.target.style.opacity = 0.1
     }
-    else return;
 }
 
 function mouseOutEvent(e){
     let opacityVar = parseFloat(e.target.style.opacity);
-    if (opacityVar == 1) return;
+    if (opacityVar === 1) return;
     opacityVar += 0.1;
     e.target.style.opacity = opacityVar;
 }
 
-let mainDiv = document.querySelector(".gridDiv");
+
 designGrid(GRID_SIZE);
 function designGrid(GRID_SIZE){
-    for(i=0;i<GRID_SIZE*GRID_SIZE;i++)
+    for(let i=0;i<GRID_SIZE*GRID_SIZE;i++)
     {
         let createDiv = document.createElement("div");
         createDiv.className = "elementDivs";
